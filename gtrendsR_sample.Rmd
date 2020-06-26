@@ -1,0 +1,69 @@
+---
+title: "Library GtrendsR "
+author: "Krushang Shah"
+date: "6/25/2020"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+---
+# Library gtrendsr
+
+The library gtrendsr can be used in order to extract the trends data into a data frame, which can then be used for the predictions you want.
+
+The documentation for the library can be found here [gtrendsR](https://cran.r-project.org/package=gtrendsR)
+## Setup
+```{r setup, warning=FALSE, message=FALSE}
+library(scales)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(zoo)
+theme_set(theme_bw())
+
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+## Install the library
+
+install.packages("gtrendsR")
+```{r}
+library(gtrendsR)
+```
+## Explanation
+
+gtrends(
+  keyword = NA,
+  geo = "",
+  time = "today+5-y",
+  gprop = c("web", "news", "images", "froogle", "youtube"),
+  category = 0,
+  hl = "en-US",
+  low_search_volume = FALSE,
+  cookie_url = "http://trends.google.com/Cookies/NID",
+  tz = 0,
+  onlyInterest = FALSE
+)
+
+## Usage
+You can provide keywords, location, time and category.
+The category number can also be found from the URL that results after the search you made
+```{r}
+tmp <- gtrends(,geo="US",category = 467,time = "all")
+tmp[["interest_over_time"]]
+```
+## Related Topics and Queries
+
+```{r}
+tmp[["related_topics"]]
+tmp[["related_queries"]]
+```
+
